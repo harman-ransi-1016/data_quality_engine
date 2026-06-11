@@ -1,0 +1,24 @@
+# Declarative data-quality checks. Add entries here to expand coverage
+# (this is the file you'll edit in the git exercise).
+checks:
+  - table: PC_DBT_DB.PUBLIC.CUSTOMER_SRC
+    type: not_null
+    column: CUSTOMER_ID
+
+  - table: PC_DBT_DB.PUBLIC.CUSTOMER_SRC
+    type: unique
+    column: CUSTOMER_ID
+
+  - table: PC_DBT_DB.PUBLIC.CUSTOMER_SRC
+    type: row_count_min
+    min: 1
+
+  - table: PC_DBT_DB.PUBLIC.PURCHASE_SRC
+    type: accepted_values
+    column: PURCHASE_STATUS
+    values: [PROCESSING, SHIPPED, DELIVERED]
+
+  - table: PC_DBT_DB.PUBLIC.CUSTOMER_SRC
+    type: freshness
+    column: CREATED_AT
+    max_age_hours: 24
