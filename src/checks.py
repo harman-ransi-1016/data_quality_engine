@@ -58,6 +58,9 @@ def check_freshness(conn, c):
     ok = age <= c["max_age_hours"]
     return Result(f"freshness({c['column']})", c["table"], ok, f"{age}h old (limit {c['max_age_hours']}h)")
 
+def check_max_value(conn, c):
+    n = _scalar(conn, f"SELECT count(*) FROM {c['table']} WHERE {c['column']} > {c['max']}")
+    return Result(f"max_value({c['column']}<={c['max']})", c["table"], n == 0, f"{n} row(s) over {c['max']}")
 
 REGISTRY = {
     "not_null": check_not_null,
@@ -65,4 +68,5 @@ REGISTRY = {
     "accepted_values": check_accepted_values,
     "row_count_min": check_row_count_min,
     "freshness": check_freshness,
+    "max_value": check_max_value,        # <-- add this
 }

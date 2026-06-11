@@ -22,3 +22,8 @@ checks:
     type: freshness
     column: CREATED_AT
     max_age_hours: 24
+
+  - table: PC_DBT_DB.PUBLIC.SALES_SRC
+    type: max_value
+    column: TOTAL_AMOUNT
+    max: 100
