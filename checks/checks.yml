@@ -21,7 +21,7 @@ checks:
   - table: PC_DBT_DB.PUBLIC.CUSTOMER_SRC
     type: freshness
     column: CREATED_AT
-    max_age_hours: 24
+    max_age_hours: 12
 
   - table: PC_DBT_DB.PUBLIC.SALES_SRC
     type: max_value
