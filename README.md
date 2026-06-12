@@ -52,3 +52,4 @@ python main.py             # run all checks
 python main.py --fail-fast # stop at first failure
 ```
 Exit code is non-zero if any check fails (gate a CI job on it).
+# test
